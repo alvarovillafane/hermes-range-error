@@ -1,14 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { HyperFormula } from 'hyperformula';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { HyperFormula } from "hyperformula";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   const options = {
-    licenseKey: 'gpl-v3',
+    licenseKey: "gpl-v3",
   };
 
-  const formulaWithIssues = '=(8 + (SUM(5,B1)))';
-  const data = [['10', '20', '=Sheet1!A2 + 5', formulaWithIssues]];
+  const formulaWithIssues =
+    "((((23+B1)) +(((((((2+ (8 + (SUM(5,B1))))))))) + 5)))";
+  const data = [
+    [
+      `=((((${formulaWithIssues} +8))))`,
+      "10",
+      "20",
+      "=Sheet1!B1 + 5",
+      `=${formulaWithIssues} + Sheet1!B1 + 5`,
+    ],
+  ];
 
   const hfInstance = HyperFormula.buildEmpty(options);
   hfInstance.addSheet();
@@ -33,8 +42,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
